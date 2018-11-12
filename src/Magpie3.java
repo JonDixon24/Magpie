@@ -4,14 +4,14 @@
  * <li>
  * Uses advanced search for keywords</li>
  * </ul>
- * 
+ *
  * @author Laurie White
  * @version April 2012
  */
 public class Magpie3 {
 	/**
 	 * Get a default greeting
-	 * 
+	 *
 	 * @return a greeting
 	 */
 	public String getGreeting() {
@@ -20,7 +20,7 @@ public class Magpie3 {
 
 	/**
 	 * Gives a response to a user statement
-	 * 
+	 *
 	 * @param statement
 	 *            the user statement
 	 * @return a response based on the rules given
@@ -31,11 +31,21 @@ public class Magpie3 {
 			response = "Say something, please.";
 		} else if (findKeyword(statement, "no") >= 0) {
 			response = "Why so negative?";
+		} else if ((findKeyword(statement, "okay") >= 0
+			|| (findKeyword(statement, "yes") >= 0 ))) {
+			response = "Okay... so?";
 		} else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
 				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0) {
+				|| findKeyword(statement, "brother") >= 0
+				|| findKeyword(statement, "mom") >= 0
+				|| findKeyword(statement, "dad") >= 0) {
 			response = "Tell me more about your family.";
+		} else if ((findKeyword(statement, "cat") >= 0
+			|| (findKeyword(statement, "dog") >= 0 ))) {
+			response = "Tell me more about your pet.";
+		} else if (findKeyword(statement, "Mr. Padjen") >= 0) {
+			response = "Oh! I like that teacher!";
 		} else {
 			response = getRandomResponse();
 		}
@@ -46,7 +56,7 @@ public class Magpie3 {
 	 * Search for one word in phrase. The search is not case sensitive. This
 	 * method will check that the given goal is not a substring of a longer
 	 * string (so, for example, "I know" does not contain "no").
-	 * 
+	 *
 	 * @param statement
 	 *            the string to search
 	 * @param goal
@@ -103,7 +113,7 @@ public class Magpie3 {
 	 * method will check that the given goal is not a substring of a longer
 	 * string (so, for example, "I know" does not contain "no"). The search
 	 * begins at the beginning of the string.
-	 * 
+	 *
 	 * @param statement
 	 *            the string to search
 	 * @param goal
@@ -117,7 +127,7 @@ public class Magpie3 {
 
 	/**
 	 * Pick a default response to use if nothing else fits.
-	 * 
+	 *
 	 * @return a non-committal string
 	 */
 	private String getRandomResponse() {
